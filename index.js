@@ -1,8 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './components/index.js';
+import App from './components/index';
+import todoStore from './stores/index.js'
 
-render(
-	<App></App>,
-	document.getElementById("app")
-)
+const renderDom = ()=>{
+	render(
+		<App value={todoStore.getState()} onIncrement={ ()=>{ todoStore.dispatch({ type: 'INCREMENT'})} } 
+			onDecrement={ ()=>{ todoStore.dispatch({ type: 'DECREMENT'})} }
+		></App>,
+		document.getElementById("app")
+	)
+}
