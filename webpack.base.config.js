@@ -27,11 +27,11 @@ module.exports = {
 	            test: /\.(sass|scss)$/,
 	            // 同上
 	            loaders: ['style-loader','css-loader', 'autoprefixer-loader', 'sass-loader'],
-	        }
+	        },
 		]
 	},
 	plugins: [
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoEmitOnErrorsPlugin()
+        new webpack.NoErrorsPlugin()
     ]
 }
