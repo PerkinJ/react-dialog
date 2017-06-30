@@ -1,16 +1,16 @@
-import React from 'react';
-import { render } from 'react-dom';
-import App from './components/index.js';
-import todoStore from './stores/index.js'
+import React from 'react'
+import { render } from 'react-dom'
+import { createStore } from 'redux'
+import { Provider } from 'react-redux'
+import App from './containers/App'
+import todoApp from './reducers/index.js'
 
-const renderDom = ()=>{
-	render(
-		<App value={todoStore.getState()} onIncrement={ ()=>{ todoStore.dispatch({ type: 'INCREMENT'})} } 
-			onDecrement={ ()=>{ todoStore.dispatch({ type: 'DECREMENT'})} }
-		></App>,
-		document.getElementById("app")
-	)
-}
+let store = createStore(todoApp)
 
-todoStore.subscribe(renderDom);
-renderDom();
+let rootElement = document.getElementById('root')
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  rootElement
+)
