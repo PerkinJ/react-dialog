@@ -14,11 +14,13 @@ module.exports = {
 		path.resolve(__dirname, 'app/index.js')       // 定义入口文件
 	],
 	output: {
-		path: path.resolve(__dirname, 'build'),
+		path: path.resolve(__dirname, '/build'),
 		filename: 'bundle.js',
     	publicPath: 'http://localhost:8080/' // html引用路径
 	},
-
+	resolve: {                                      // resolve 指定可以被 import 的文件后缀
+	    extensions: ['', '.js', '.jsx']
+	  },
 	module: {
 		rules: [
 			{

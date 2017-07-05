@@ -4,8 +4,14 @@
   "description": "react starter",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --inline --hot",
-    "build":"webpack --progress -p  --config webpack.config.js"
+    "start": "export NODE_ENV=development && webpack-dev-server && npm run lint:watch",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:prod": "export NODE_ENV=production && npm run build && webpack-dashboard -- node server.js",
+    "build": "npm run remove:build && NODE_ENV=production && webpack -p --config webpack.config.prod.js --progress --colors",
+    "clean:build": "npm run remove-build && mkdir build",
+    "remove:build": "rimraf build",
+    "lint": "esw webpack.config.* app",
+    "lint:watch": "npm run lint -- --watch"
   },
   "dependencies": {
     "babel-polyfill": "^6.23.0",
@@ -31,10 +37,13 @@
     "html-webpack-plugin": "^2.28.0",
     "ip": "^1.1.5",
     "node-sass": "^4.5.3",
+    "open-browser-webpack-plugin": "^0.0.5",
     "react-hot-loader": "^1.3.0",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
-    "webpack": "^2.2.1",
+    "uglifyjs-webpack-plugin": "^0.4.6",
+    "webpack": "^2.6.1",
+    "webpack-dashboard": "^0.4.0",
     "webpack-dev-server": "^1.14.1"
   },
   "repository": {

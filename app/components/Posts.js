@@ -1,11 +1,12 @@
 import React, { PropTypes, Component } from 'react'
+import './posts.scss'
 
 export default class Posts extends Component {
   render() {
     return (
       <ul>
         {this.props.posts.map((post, i) =>
-          <li key={i}>{post.title}</li>
+          <li className="list" key={i}>{post.title}</li>
         )}
       </ul>
     )
