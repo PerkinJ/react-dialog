@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const path = require('path');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 const config = {
 	  devtool: 'cheap-source-map',
@@ -35,11 +34,11 @@ const config = {
 	        {
 		        test: /\.(jpe?g|png|gif|svg)$/i,
 		        loaders: [
-		          'url?limit=10000&name=img/[hash:8].[name].[ext]',
-		          'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+		            'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+		            'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
 		        ]
-		      }
-			]
+	    	}
+		  ]
 		},
 		plugins: [
 	    new webpack.DefinePlugin({

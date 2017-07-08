@@ -18,9 +18,6 @@ module.exports = {
 		filename: 'bundle.js',
     	publicPath: 'http://localhost:8080/' // html引用路径
 	},
-	resolve: {                                      // resolve 指定可以被 import 的文件后缀
-	    extensions: ['', '.js', '.jsx']
-	  },
 	module: {
 		rules: [
 			{
@@ -41,10 +38,10 @@ module.exports = {
 	        {
 		        test: /\.(jpe?g|png|gif|svg)$/i,
 		        loaders: [
-		          'url?limit=10000&name=img/[hash:8].[name].[ext]',
-		          'image-webpack?{progressive:true, optimizationLevel: 7, interlaced: false, pngquant:{quality: "65-90", speed: 4}}'
+		            'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+		            'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
 		        ]
-		      }
+	    	}
 		]
 	},
 	plugins: [
